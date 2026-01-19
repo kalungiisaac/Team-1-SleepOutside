@@ -3,16 +3,9 @@ import { renderListWithTemplate } from './utils.mjs';
 
 // Product Card Template
 function productCardTemplate(product) {
-  // normalize brand logo path (make relative to src/ pages)
-  const brandLogoRaw = product.Brand && product.Brand.LogoSrc ? product.Brand.LogoSrc : '';
-  const brandLogo = brandLogoRaw
-    ? brandLogoRaw.replace(/^(?:\.{1,2}\/|\/)*/, './')
-    : '';
-
   return `<li class="product-card">
-    <a href="./product_pages/index.html?product=${product.Id}">
+    <a href="product_pages/index.html?product=${product.Id}">
       <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
-      ${brandLogo ? `<img class="card__brand-logo" src="${brandLogo}" alt="${product.Brand?.Name || ''} logo">` : ''}
       <h2 class="card__brand">${product.Brand.Name}</h2>
       <h3 class="card__name">${product.NameWithoutBrand}</h3>
       <p class="product-card__price">$${product.FinalPrice}</p>

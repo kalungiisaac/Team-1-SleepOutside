@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { addToCart } from './utils.mjs';
 
 // Gather product details from the product page DOM and add to cart
@@ -21,30 +20,3 @@ function addToCartHandler(e) {
 
 const addBtn = document.getElementById('addToCart');
 if (addBtn) addBtn.addEventListener('click', addToCartHandler);
-=======
-import { setLocalStorage, getLocalStorage } from './utils.mjs';
-import ProductData from './ProductData.mjs';
-
-const dataSource = new ProductData('tents');
-
-function addProductToCart(product) {
-  // Get existing cart or create empty array if none exists
-  let cart = getLocalStorage('so-cart') || [];
-
-  // Add the new product to the cart array
-  cart.push(product);
-
-  // Save the updated cart back to localStorage
-  setLocalStorage('so-cart', cart);
-}
-// add to cart button event handler
-async function addToCartHandler(e) {
-  const product = await dataSource.findProductById(e.target.dataset.id);
-  addProductToCart(product);
-}
-
-// add listener to Add to Cart button
-document
-  .getElementById('addToCart')
-  .addEventListener('click', addToCartHandler);
->>>>>>> 7bc3b74ab74b72da7cd5ded747bd534523867b6a

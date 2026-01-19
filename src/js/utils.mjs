@@ -3,12 +3,14 @@
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
 }
-
-<<<<<<< HEAD
-=======
 // retrieve data from localstorage
 export function getLocalStorage(key) {
-  return JSON.parse(localStorage.getItem(key));
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
 }
 
 // save data to local storage
@@ -18,15 +20,16 @@ export function setLocalStorage(key, data) {
 
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
-  qs(selector).addEventListener('touchend', (event) => {
+  const el = qs(selector);
+  if (!el) return;
+  el.addEventListener('touchend', (event) => {
     event.preventDefault();
-    callback();
+    callback(event);
   });
-  qs(selector).addEventListener('click', callback);
+  el.addEventListener('click', callback);
 }
 
 // render list with template
->>>>>>> 7bc3b74ab74b72da7cd5ded747bd534523867b6a
 export function renderListWithTemplate(templateFn, parentElement, list, position = 'afterbegin', clear = false) {
   if (clear) {
     parentElement.innerHTML = '';
