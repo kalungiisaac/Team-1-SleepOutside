@@ -1,22 +1,42 @@
-<!-- src/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ... existing head content ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SleepOutside</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 </head>
 <body>
-    <!-- ... existing header/navigation ... -->
+    <header class="divider">
+        <div class="logo">
+            <img src="../images/noun-tent-6597.png" alt="tent image for logo">
+            <h1>Sleep<span class="highlight">Outside</span></h1>
+        </div>
+        <div class="cart">
+            <a href="../cart/index.html"><img src="../images/cart.svg" alt="cart"></a>
+        </div>
+    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
     
-    <main>
+    <main class="main-home">
         <h1>Tents</h1>
         <ul class="product-list">
             <!-- Product cards will be dynamically inserted here -->
         </ul>
     </main>
     
-    <!-- ... existing footer ... -->
+    <footer class="footer">
+        <p>&copy; 2023 SleepOutside, Inc.</p>
+    </footer>
     
-    <!-- Type module for main.js -->
-    <script src="../js/main.js" type="module"></script>
+    <script src="../js/cart.js" type="module"></script>
 </body>
 </html>

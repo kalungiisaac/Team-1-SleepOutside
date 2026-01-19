@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // At the beginning of your cart rendering function
 export async function renderCartContents() {
   const { getCart, removeFromCart, updateQty } = await import('./utils.mjs');
@@ -6,6 +7,15 @@ export async function renderCartContents() {
   const listEl = document.querySelector('.product-list');
   const footer = document.querySelector('.cart-footer');
   const cartLink = document.querySelector('.cart a');
+=======
+import { getLocalStorage } from './utils.mjs';
+
+function renderCartContents() {
+  const cartItems = getLocalStorage('so-cart');
+  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+  document.querySelector('.product-list').innerHTML = htmlItems.join('');
+}
+>>>>>>> 7bc3b74ab74b72da7cd5ded747bd534523867b6a
 
   if (!cartItems || cartItems.length === 0) {
     if (listEl) listEl.innerHTML = '<p class="empty-cart">Your cart is empty. <a href="../index.html">Continue shopping</a></p>';
