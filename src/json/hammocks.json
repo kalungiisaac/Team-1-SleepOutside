@@ -1,0 +1,202 @@
+[
+  {
+    "Id": "HAM001",
+    "NameWithoutBrand": "Ultralight Camping Hammock - Single",
+    "Name": "ENO SingleNest Ultralight Camping Hammock",
+    "Image": "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Forest Green/Charcoal"
+      },
+      {
+        "ColorCode": "02",
+        "ColorName": "Navy/Royal Blue"
+      }
+    ],
+    "DescriptionHtmlSimple": "The ENO SingleNest hammock is the perfect lightweight companion for your outdoor adventures. Made from high-strength breathable nylon, it packs down small but delivers big comfort. Supports up to 400 lbs and sets up in seconds.",
+    "SuggestedRetailPrice": 69.95,
+    "Brand": {
+      "Id": "5001",
+      "LogoSrc": "./images/logos/eno-logo.jpg",
+      "Name": "ENO"
+    },
+    "ListPrice": 54.95,
+    "FinalPrice": 54.95
+  },
+  {
+    "Id": "HAM002",
+    "NameWithoutBrand": "DoubleNest Hammock - Two Person",
+    "Name": "ENO DoubleNest Hammock - Two Person",
+    "Image": "https://images.unsplash.com/photo-1520824071669-9c78a40c0578?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Red/Charcoal"
+      },
+      {
+        "ColorCode": "02",
+        "ColorName": "Olive/Khaki"
+      }
+    ],
+    "DescriptionHtmlSimple": "Share the comfort with ENO's DoubleNest hammock. Roomy enough for two, this hammock features triple-stitched seams and nautical-grade carabiners for ultimate durability. Perfect for couples or those who love extra space.",
+    "SuggestedRetailPrice": 89.95,
+    "Brand": {
+      "Id": "5001",
+      "LogoSrc": "./images/logos/eno-logo.jpg",
+      "Name": "ENO"
+    },
+    "ListPrice": 74.95,
+    "FinalPrice": 74.95
+  },
+  {
+    "Id": "HAM003",
+    "NameWithoutBrand": "Camping Hammock with Mosquito Net",
+    "Name": "Wise Owl Outfitters Camping Hammock with Mosquito Net",
+    "Image": "https://images.unsplash.com/photo-1587381420270-82bbfa93bf6e?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Green/Grey"
+      }
+    ],
+    "DescriptionHtmlSimple": "<strong>Bestseller</strong>. Sleep bug-free in the great outdoors! This all-in-one hammock features an integrated mosquito net that keeps insects out while letting fresh air in. Includes tree straps and aluminum carabiners.",
+    "SuggestedRetailPrice": 49.99,
+    "Brand": {
+      "Id": "5002",
+      "LogoSrc": "./images/logos/wise-owl-logo.jpg",
+      "Name": "Wise Owl Outfitters"
+    },
+    "ListPrice": 34.99,
+    "FinalPrice": 34.99
+  },
+  {
+    "Id": "HAM004",
+    "NameWithoutBrand": "Parachute Nylon Hammock with Rain Fly",
+    "Name": "Kammok Roo Double Hammock with Rain Fly",
+    "Image": "https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Granite Grey"
+      },
+      {
+        "ColorCode": "02",
+        "ColorName": "Ember Orange"
+      }
+    ],
+    "DescriptionHtmlSimple": "Be prepared for any weather with Kammok's Roo hammock and rain fly bundle. The diamond ripstop nylon construction is water-resistant and incredibly strong. The included tarp keeps you dry during unexpected showers.",
+    "SuggestedRetailPrice": 149.00,
+    "Brand": {
+      "Id": "5003",
+      "LogoSrc": "./images/logos/kammok-logo.jpg",
+      "Name": "Kammok"
+    },
+    "ListPrice": 119.00,
+    "FinalPrice": 99.00
+  },
+  {
+    "Id": "HAM005",
+    "NameWithoutBrand": "Ultralight Travel Hammock",
+    "Name": "Sea to Summit Ultralight Travel Hammock",
+    "Image": "https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Lime Green"
+      },
+      {
+        "ColorCode": "02",
+        "ColorName": "Blue"
+      }
+    ],
+    "DescriptionHtmlSimple": "<strong>Closeout</strong>. Weighing just 5 oz, this is the ultimate hammock for ultralight backpackers. The 15D nylon fabric is incredibly packable yet supports up to 300 lbs. Perfect for thru-hikers and minimalist campers.",
+    "SuggestedRetailPrice": 79.95,
+    "Brand": {
+      "Id": "5004",
+      "LogoSrc": "./images/logos/sea-to-summit-logo.jpg",
+      "Name": "Sea to Summit"
+    },
+    "ListPrice": 59.95,
+    "FinalPrice": 44.95
+  },
+  {
+    "Id": "HAM006",
+    "NameWithoutBrand": "Quilted Hammock with Stand",
+    "Name": "Vivere Double Cotton Quilted Hammock with Stand",
+    "Image": "https://images.unsplash.com/photo-1534359265607-b9df42adb952?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Desert Moon"
+      },
+      {
+        "ColorCode": "02",
+        "ColorName": "Tropical"
+      },
+      {
+        "ColorCode": "03",
+        "ColorName": "Oasis"
+      }
+    ],
+    "DescriptionHtmlSimple": "Bring resort-style relaxation to your backyard with Vivere's quilted hammock and steel stand combo. The 100% cotton hammock bed is extra comfortable with polyester batting. No trees required!",
+    "SuggestedRetailPrice": 199.99,
+    "Brand": {
+      "Id": "5005",
+      "LogoSrc": "./images/logos/vivere-logo.jpg",
+      "Name": "Vivere"
+    },
+    "ListPrice": 159.99,
+    "FinalPrice": 139.99
+  },
+  {
+    "Id": "HAM007",
+    "NameWithoutBrand": "Jungle Hammock Tent - 3-in-1",
+    "Name": "Lawson Blue Ridge Camping Hammock Tent",
+    "Image": "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Forest Green"
+      }
+    ],
+    "DescriptionHtmlSimple": "The ultimate versatility! Use as a hammock, a tent, or both. Features integrated bug netting, rain fly, and can be set up on the ground when trees aren't available. Arch pole design provides maximum interior space.",
+    "SuggestedRetailPrice": 249.00,
+    "Brand": {
+      "Id": "5006",
+      "LogoSrc": "./images/logos/lawson-logo.jpg",
+      "Name": "Lawson Hammock"
+    },
+    "ListPrice": 229.00,
+    "FinalPrice": 199.00
+  },
+  {
+    "Id": "HAM008",
+    "NameWithoutBrand": "Tree Straps Suspension System",
+    "Name": "ENO Atlas Hammock Tree Straps",
+    "Image": "https://images.unsplash.com/photo-1445308394109-4ec2920981b1?w=320&h=320&fit=crop",
+    "SizesAvailable": {},
+    "Colors": [
+      {
+        "ColorCode": "01",
+        "ColorName": "Black/Green"
+      }
+    ],
+    "DescriptionHtmlSimple": "The perfect companion for any hammock! These 9-foot straps feature 30 adjustment points for the perfect hang every time. Tree-friendly design won't damage bark. Rated to 400 lbs combined with hammock.",
+    "SuggestedRetailPrice": 29.95,
+    "Brand": {
+      "Id": "5001",
+      "LogoSrc": "./images/logos/eno-logo.jpg",
+      "Name": "ENO"
+    },
+    "ListPrice": 24.95,
+    "FinalPrice": 24.95
+  }
+]

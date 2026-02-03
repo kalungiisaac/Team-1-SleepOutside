@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Order Confirmed</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/checkout-success.js" type="module"></script>
+  </head>
+
+  <body>
+    <header class="divider" id="main-header"></header>
+
+    <main class="divider">
+      <section class="success-page">
+        <div class="success-container">
+          <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="80" height="80">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+          </div>
+          
+          <h1 class="success-title">🎉 Congratulations!</h1>
+          <h2 class="success-subtitle">Your Order Has Been Placed Successfully</h2>
+          
+          <div class="order-confirmation">
+            <p class="order-number">Order Number: <strong id="order-id">Loading...</strong></p>
+            <p class="order-date">Order Date: <strong id="order-date">Loading...</strong></p>
+            <p class="order-email">Confirmation sent to: <strong id="customer-email">Loading...</strong></p>
+          </div>
+
+          <div class="shipping-info-box">
+            <h3>📦 Shipping Information</h3>
+            <div class="shipping-details">
+              <div class="shipping-item">
+                <span class="shipping-label">Estimated Delivery:</span>
+                <span class="shipping-value" id="delivery-date">5-7 Business Days</span>
+              </div>
+              <div class="shipping-item">
+                <span class="shipping-label">Shipping Address:</span>
+                <span class="shipping-value" id="shipping-address">Loading...</span>
+              </div>
+              <div class="shipping-item">
+                <span class="shipping-label">Shipping Method:</span>
+                <span class="shipping-value">Standard Ground Shipping</span>
+              </div>
+            </div>
+            
+            <div class="shipping-note">
+              <p><strong>📧 What's Next?</strong></p>
+              <ul>
+                <li>You will receive an email confirmation shortly</li>
+                <li>Once your order ships, we'll send you a tracking number</li>
+                <li>Track your package anytime using your order number</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="order-summary-success">
+            <h3>Order Summary</h3>
+            <ul class="success-items" id="success-items"></ul>
+            <div class="success-totals">
+              <div class="total-row">
+                <span>Subtotal:</span>
+                <span id="success-subtotal">$0.00</span>
+              </div>
+              <div class="total-row">
+                <span>Shipping:</span>
+                <span id="success-shipping">$0.00</span>
+              </div>
+              <div class="total-row">
+                <span>Tax:</span>
+                <span id="success-tax">$0.00</span>
+              </div>
+              <div class="total-row grand-total">
+                <strong>Total Paid:</strong>
+                <strong id="success-total">$0.00</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="success-actions">
+            <a href="../index.html" class="btn btn-primary">Continue Shopping</a>
+            <button class="btn btn-secondary" onclick="window.print()">Print Receipt</button>
+          </div>
+
+          <div class="contact-support">
+            <p>Questions about your order? Contact us at <a href="mailto:support@sleepoutside.com">support@sleepoutside.com</a></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="main-footer"></footer>
+  </body>
+</html>
