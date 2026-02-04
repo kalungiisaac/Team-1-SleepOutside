@@ -1,34 +1,16 @@
-import { getParam, loadHeaderFooter } from './utils.mjs';
-import ProductData from './ProductData.mjs';
-import ProductDetails from './ProductDetails.mjs';
+import { loadHeaderFooter, getParam, updateCartCount } from "./utils.mjs";
+import ProductData from "./ProductData.mjs";
+import ProductDetails from "./ProductDetails.mjs";
 
-console.log('product.js loaded');
+loadHeaderFooter().then(() => {
+  updateCartCount();
+}).catch(err => console.error('Error loading header/footer:', err));
 
-// Load header and footer
-loadHeaderFooter();
+const category = getParam("category") || document.body.dataset.category || 'tents';
+const productId = getParam("product") || document.body.dataset.product;
 
-// Get product ID from URL
-const productId = getParam('product');
-console.log('Product ID from URL:', productId);
-
-if (!productId) {
-  console.error('No product ID found in URL');
-  document.querySelector('.product-detail').innerHTML = `
-    <div class="error">
-      <h2>Product not found</h2>
-      <p>No product ID specified.</p>
-      <a href="/index.html">Return to home</a>
-    </div>
-  `;
-} else {
-  console.log('Initializing product details for ID:', productId);
-  
-  // Initialize data source
-  const dataSource = new ProductData();
-  
-  // Create product details instance
-  const product = new ProductDetails(productId, dataSource);
-  
-  // Initialize product details
-  product.init();
+if (category && productId) {
+  const dataSource = new ProductData(category);
+  const productDetails = new ProductDetails(productId, dataSource);
+  productDetails.init();
 }

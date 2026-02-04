@@ -100,7 +100,8 @@ export function updateCartCount() {
   const countElement = document.getElementById('cart-count');
   
   if (countElement) {
-    const count = cart.length;
+    // Sum up all quantities instead of just counting items
+    const count = cart.reduce((total, item) => total + (item.quantity || 1), 0);
     countElement.textContent = count;
     
     if (count === 0) {
@@ -131,53 +132,28 @@ export function setActiveNavLink() {
 
 // Load header and footer
 export async function loadHeaderFooter() {
-  try {
-    // Try several candidate paths so partials load correctly from nested pages
-    const candidates = [
-      'partials/header.html',
-      './partials/header.html',
-      '../partials/header.html',
-      '../../partials/header.html',
-      '/src/partials/header.html',
-      '/partials/header.html'
-    ];
+  // Determine base path based on current location
+  const path = window.location.pathname;
+  let basePath = './';
+  if (path.includes('/cart/') || path.includes('/checkout/') || 
+      path.includes('/product_listing/') || path.includes('/product_pages/')) {
+    basePath = '../';
+  }
+  
+  const headerTemplate = await loadTemplate(`${basePath}partials/header.html`);
+  const headerElement = document.getElementById('main-header');
+  if (headerElement) {
+    // Replace {{BASE}} placeholder with correct base path
+    const fixedHeader = headerTemplate.replace(/\{\{BASE\}\}/g, basePath);
+    renderWithTemplate(fixedHeader, headerElement);
+  }
 
-    let headerTemplate = '';
-    let footerTemplate = '';
-
-    for (const p of candidates) {
-      const resolved = new URL(p, window.location.href).href;
-      const tpl = await loadTemplate(resolved);
-      if (tpl && tpl.trim().length > 0) {
-        headerTemplate = tpl;
-        break;
-      }
-    }
-
-    for (const p of candidates) {
-      const resolved = new URL(p.replace('header', 'footer'), window.location.href).href;
-      const tpl = await loadTemplate(resolved);
-      if (tpl && tpl.trim().length > 0) {
-        footerTemplate = tpl;
-        break;
-      }
-    }
-    
-    const headerElement = document.getElementById("main-header");
-    const footerElement = document.getElementById("main-footer");
-    
-    if (headerElement && headerTemplate) {
-      renderWithTemplate(headerTemplate, headerElement);
-      updateCartCount();
-      setActiveNavLink();
-    }
-    
-    if (footerElement && footerTemplate) {
-      renderWithTemplate(footerTemplate, footerElement);
-    }
-    
-  } catch (error) {
-    console.error("Error in loadHeaderFooter:", error);
+  const footerTemplate = await loadTemplate(`${basePath}partials/footer.html`);
+  const footerElement = document.getElementById('main-footer');
+  if (footerElement) {
+    // Replace {{BASE}} placeholder with correct base path
+    const fixedFooter = footerTemplate.replace(/\{\{BASE\}\}/g, basePath);
+    renderWithTemplate(fixedFooter, footerElement);
   }
 }
 

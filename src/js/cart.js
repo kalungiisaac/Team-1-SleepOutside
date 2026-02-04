@@ -1,12 +1,26 @@
-import { loadHeaderFooter, getLocalStorage, setLocalStorage, alertMessage } from './utils.mjs';
+import { loadHeaderFooter, getLocalStorage, setLocalStorage, alertMessage, updateCartCount } from './utils.mjs';
 
-loadHeaderFooter();
+loadHeaderFooter().then(() => {
+  updateCartCount();
+}).catch(err => console.error('Error loading header/footer:', err));
 
 function cartItemTemplate(item, index) {
-  const img = (item && item.Images && (item.Images.PrimaryMedium || item.Images.PrimarySmall || item.Images.PrimaryLarge)) || './images/placeholder.png';
+  const rawImage =
+    (item && item.Images && (item.Images.PrimaryMedium || item.Images.PrimarySmall || item.Images.PrimaryLarge)) ||
+    item.Image ||
+    '../images/placeholder.png';
+  // Handle image URL - use relative path from cart folder
+  let img = rawImage;
+  if (rawImage.startsWith('/')) {
+    img = '..' + rawImage; // Convert /images/... to ../images/...
+  } else if (rawImage.startsWith('./')) {
+    img = '../' + rawImage.slice(2); // Convert ./images/... to ../images/...
+  }
   const name = (item && (item.Name || item.NameWithoutBrand)) || 'Unnamed product';
   const color = (item && item.Colors && item.Colors[0] && item.Colors[0].ColorName) || '';
-  const price = (item && item.FinalPrice != null && !isNaN(item.FinalPrice)) ? `$${Number(item.FinalPrice).toFixed(2)}` : '';
+  const quantity = item.quantity || 1;
+  const unitPrice = (item && item.FinalPrice != null && !isNaN(item.FinalPrice)) ? Number(item.FinalPrice) : 0;
+  const totalPrice = unitPrice * quantity;
 
   return `<li class="cart-card divider">
     <a href="#" class="cart-card__image">
@@ -16,8 +30,12 @@ function cartItemTemplate(item, index) {
       <h2 class="card__name">${name}</h2>
     </a>
     <p class="cart-card__color">${color}</p>
-    <p class="cart-card__quantity">qty: 1</p>
-    <p class="cart-card__price">${price}</p>
+    <div class="cart-card__quantity">
+      <button class="qty-btn qty-decrease" data-index="${index}">-</button>
+      <span class="qty-value">${quantity}</span>
+      <button class="qty-btn qty-increase" data-index="${index}">+</button>
+    </div>
+    <p class="cart-card__price">$${totalPrice.toFixed(2)}</p>
     <button class="remove-item" data-index="${index}">Remove</button>
   </li>`;
 }
@@ -63,6 +81,40 @@ function addRemoveListeners() {
       removeFromCart(index);
     });
   });
+  
+  // Add quantity increase listeners
+  const increaseButtons = document.querySelectorAll('.qty-increase');
+  increaseButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      updateQuantity(index, 1);
+    });
+  });
+  
+  // Add quantity decrease listeners
+  const decreaseButtons = document.querySelectorAll('.qty-decrease');
+  decreaseButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const index = parseInt(e.target.dataset.index);
+      updateQuantity(index, -1);
+    });
+  });
+}
+
+function updateQuantity(index, change) {
+  let cart = getLocalStorage('so-cart') || [];
+  if (cart[index]) {
+    cart[index].quantity = (cart[index].quantity || 1) + change;
+    
+    // Remove item if quantity becomes 0 or less
+    if (cart[index].quantity <= 0) {
+      cart.splice(index, 1);
+    }
+    
+    setLocalStorage('so-cart', cart);
+    renderCartContents();
+    updateCartCount();
+  }
 }
 
 function removeFromCart(index) {
@@ -70,11 +122,15 @@ function removeFromCart(index) {
   cart.splice(index, 1);
   setLocalStorage('so-cart', cart);
   renderCartContents();
+  updateCartCount();
   alertMessage('Item removed from cart', false, 2000);
 }
 
 function displayCartTotal(items) {
-  const total = items.reduce((sum, item) => sum + item.FinalPrice, 0);
+  const total = items.reduce((sum, item) => {
+    const quantity = item.quantity || 1;
+    return sum + (item.FinalPrice * quantity);
+  }, 0);
   
   let totalElement = document.querySelector('.cart-total');
   if (!totalElement) {

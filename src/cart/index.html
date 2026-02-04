@@ -1,28 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Cart</title>
-  <link rel="stylesheet" href="../css/style.css">
-</head>
-<body>
-    <!-- Header will be loaded dynamically -->
-    <div id="main-header"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sleep Outside | Cart</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/cart.js" type="module"></script>
+  </head>
+
+  <body>
+    <header class="divider" id="main-header"></header>
 
     <main class="divider">
       <section class="products">
         <h2>My Cart</h2>
-
-        <ul class="product-list">
-          <!-- Cart items will be loaded dynamically -->
-        </ul>
+        <ul class="product-list"></ul>
+        <div class="list-footer hide">
+          <a href="../checkout/index.html">Checkout</a>
+          <span>Total:</span>
+          <span class="list-total">Total: </span>
+        </div>
       </section>
     </main>
 
-    <!-- Footer will be loaded dynamically -->
-    <div id="main-footer"></div>
-
-    <script src="../js/cart.js" type="module"></script>
-</body>
+    <footer id="main-footer"></footer>
+  </body>
 </html>

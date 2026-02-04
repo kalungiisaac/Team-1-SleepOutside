@@ -1,18 +1,49 @@
 import { setLocalStorage, getLocalStorage, updateCartCount } from './utils.mjs';
 
 function productDetailsTemplate(product) {
-  console.log('Creating template for product:', product);
+  const image =
+    product.Images?.PrimaryLarge ||
+    product.Images?.PrimaryMedium ||
+    product.Image ||
+    '';
+  // Handle image URL - use relative path from product_pages folder
+  let imageUrl = image;
+  if (image.startsWith('/')) {
+    imageUrl = '..' + image; // Convert /images/... to ../images/...
+  } else if (image.startsWith('./')) {
+    imageUrl = '../' + image.slice(2); // Convert ./images/... to ../images/...
+  }
+  
+  // Calculate discount percentage if there's a price difference
+  const originalPrice = product.SuggestedRetailPrice || product.ListPrice;
+  const finalPrice = product.FinalPrice;
+  let discountBadge = '';
+  let priceDisplay = `<p class="product-card__price">$${finalPrice.toFixed(2)}</p>`;
+  
+  if (originalPrice && originalPrice > finalPrice) {
+    const discountPercent = Math.round(((originalPrice - finalPrice) / originalPrice) * 100);
+    discountBadge = `<span class="discount-badge discount-badge--large">${discountPercent}% OFF</span>`;
+    priceDisplay = `
+      <p class="product-card__price">
+        <span class="original-price">$${originalPrice.toFixed(2)}</span>
+        <span class="final-price">$${finalPrice.toFixed(2)}</span>
+        <span class="savings">You save $${(originalPrice - finalPrice).toFixed(2)}</span>
+      </p>`;
+  }
   
   return `
     <div class="product-detail-container">
       <h3 class="product-brand">${product.Brand.Name}</h3>
       <h2 class="product-name divider">${product.NameWithoutBrand}</h2>
-      <img
-        class="product-image divider"
-        src="${product.Images.PrimaryLarge}"
-        alt="${product.NameWithoutBrand}"
-      />
-      <p class="product-card__price">$${product.FinalPrice.toFixed(2)}</p>
+      <div class="product-image-container">
+        ${discountBadge}
+        <img
+          class="product-image divider"
+          src="${imageUrl}"
+          alt="${product.NameWithoutBrand}"
+        />
+      </div>
+      ${priceDisplay}
       <p class="product__color"><strong>Color:</strong> ${product.Colors[0].ColorName}</p>
       <div class="product__description">
         ${product.DescriptionHtmlSimple}
@@ -73,7 +104,7 @@ export default class ProductDetails {
             <h2>Error Loading Product</h2>
             <p>Sorry, we couldn't load this product.</p>
             <p>Error: ${error.message}</p>
-            <a href="/index.html">Return to home</a>
+            <a href="../index.html">Return to home</a>
           </div>
         `;
       }
@@ -88,8 +119,20 @@ export default class ProductDetails {
       let cart = getLocalStorage('so-cart') || [];
       console.log('Current cart:', cart);
       
-      // Add product to cart
-      cart.push(this.product);
+      // Check if product already exists in cart
+      const existingIndex = cart.findIndex(item => item.Id === this.product.Id);
+      
+      if (existingIndex !== -1) {
+        // Product exists, increase quantity
+        cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+        console.log('Increased quantity for existing item:', cart[existingIndex]);
+      } else {
+        // New product, add with quantity 1
+        const productWithQuantity = { ...this.product, quantity: 1 };
+        cart.push(productWithQuantity);
+        console.log('Added new item to cart:', productWithQuantity);
+      }
+      
       console.log('Updated cart:', cart);
       
       // Save back to localStorage
